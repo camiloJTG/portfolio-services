@@ -11,7 +11,7 @@ export const createToken = (payload: {}) => {
    const tokenStructure = {
       token,
       type: 'Bearer',
-      expiresIn: `${timeExpire} seconds`
+      expiresIn: `${timeExpire} seconds`,
    };
    return tokenStructure;
 };
