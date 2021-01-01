@@ -14,6 +14,6 @@ export default {
    },
    swagger: {
       pathFiles: process.env.PATH_FILES || '',
-      serverDev: process.env.SERVER_DEV || ''
-   }
+      serverDev: process.env.SERVER_DEV || '',
+   },
 };
