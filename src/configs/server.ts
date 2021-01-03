@@ -1,15 +1,11 @@
 import 'dotenv/config';
-
+import * as error from '../controllers/middlewares/handlerError';
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import routes from '../controllers/routes';
-
-import {
-   handlerError,
-   logError,
-} from '../controllers/middlewares/handlerError';
+import { join } from 'path';
 
 const app: Application = express();
 
@@ -21,7 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 
 routes(app);
 
-app.use(logError);
-app.use(handlerError);
+app.use(error.logError);
+app.use(error.logError);
+
+app.use(express.static(join(__dirname, 'public')));
 
 export default app;
