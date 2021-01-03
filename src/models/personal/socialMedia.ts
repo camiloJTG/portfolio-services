@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { ISocialMedia } from '../../interfaces/personal';
 
 const socialMediaSchema = new Schema(
