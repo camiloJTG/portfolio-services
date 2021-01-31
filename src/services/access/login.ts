@@ -1,5 +1,5 @@
-import { ILogin } from '../../interfaces/access';
 import accountModel from '../../models/personal/accounts';
+import { ILogin } from '../../interfaces/access';
 import { validateHash } from '../../utils/bcrypt';
 import { createToken } from '../../utils/jwt';
 

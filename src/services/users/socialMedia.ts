@@ -1,6 +1,8 @@
-import socialMediaModel, * as model from '../../models/users/socialMedia';
+import * as media from '../medias/images';
+import * as interfaces from '../../interfaces/socialMedia';
+import socialMediaModel from '../../models/personal/socialMedia';
 
-export const createSocialMedia = async (socialMedia: model.ISocialMedia) => {
+export const createSocialMedia = async (socialMedia: interfaces.ICreateSocialMedia) => {
    try {
       const urlExists = await socialMediaModel.find({ url: socialMedia.url });
       if (urlExists.length !== 0) {
@@ -13,58 +15,109 @@ export const createSocialMedia = async (socialMedia: model.ISocialMedia) => {
    }
 };
 
-export const getByUserId = async (userId: string) => {
+export const getByAccountId = async (accountId: string) => {
    try {
-      const toObject = model.toObjectId(userId);
+      let resultData = [];
+      // Validate if userId contain data
       const findSocialsMedia = await socialMediaModel
-         .find({ userId: toObject })
+         .find({ accountId: accountId })
          .lean();
       if (findSocialsMedia.length === 0) return `No data found`;
-      return findSocialsMedia;
+
+      for (const i of findSocialsMedia) {
+         const image = await media.getImages(i._id.toString());
+         if (typeof image === 'undefined') return 'Error in get images';
+         if (typeof image === 'string') {
+            resultData.unshift(image);
+         }
+         if (typeof image === 'object') {
+            let newSocialMedia: interfaces.IGetSocialMedia = {
+               _id: i._id,
+               priority: i.priority,
+               url: i.url,
+               fullName: i.fullName,
+               images: {
+                  _id: image._id,
+                  localUrl: image.localUrl,
+                  modelId: image.modelId,
+                  remoteId: image.remoteId,
+                  remoteUrl: image.remoteUrl
+               }
+            };
+            resultData.unshift(newSocialMedia);
+         }
+      }
+      return resultData;
+
    } catch (e) {
       console.error(e.message);
    }
 };
 
-export const getBySocialMediaIdAndUserId = async (
-   socialMediaId: string,
-   userId: string
-) => {
+export const getLastThreeSocialRegistered = async (accountId: string) => {
    try {
-      const toObject = model.toObjectId(userId);
-      const findSocialMedia = await socialMediaModel.findOne({
-         _id: socialMediaId,
-         userId: toObject,
-      });
-      if (!findSocialMedia) return `No data found`;
-      return findSocialMedia;
+      let resultData = [];
+      const findSocial = await socialMediaModel
+         .find({ accountId: accountId, priority: '1' })
+         .limit(3);
+      for (const i of findSocial) {
+         const image = await media.getImages(i._id);
+         if (typeof image === 'undefined') return 'Error in get images';
+         if (typeof image === 'string') {
+            resultData.unshift(image);
+         }
+         if (typeof image === 'object') {
+            let newSocialMedia: interfaces.IGetSocialMedia = {
+               _id: i._id,
+               priority: i.priority,
+               url: i.url,
+               fullName: i.fullName,
+               images: {
+                  _id: image._id,
+                  localUrl: image.localUrl,
+                  modelId: image.modelId,
+                  remoteId: image.remoteId,
+                  remoteUrl: image.remoteUrl
+               }
+            };
+            resultData.unshift(newSocialMedia);
+         }
+      }
+      return resultData;
    } catch (e) {
       console.error(e.message);
    }
 };
 
-export const updateSocialMedia = async (
-   socialMediaId: string,
-   socialMedia: model.ISocialMedia
-) => {
+export const getAllSocialMedia = async (accountId: string) => {
    try {
-      const result = await socialMediaModel
-         .updateOne({ _id: socialMediaId }, { $set: socialMedia })
-         .lean();
-      if (!result) return `The ${socialMediaId} not found in the database`;
-      return { updatedData: true };
-   } catch (e) {
-      console.error(e.message);
-   }
-};
-
-export const deleteSocialMedia = async (socialMediaId: string) => {
-   try {
-      const findId = await socialMediaModel.findById(socialMediaId).lean();
-      if (!findId)
-         return `The ${socialMediaId} social media id not found in the database`;
-      const result = await socialMediaModel.deleteOne({ _id: socialMediaId });
-      return { deletedCount: result.deletedCount };
+      let resultData = [];
+      const findSocial = await socialMediaModel.find({ accountId: accountId });
+      if (findSocial.length === 0) return 'No data found';
+      for (const i of findSocial) {
+         const image = await media.getImages(i._id);
+         if (typeof image === 'undefined') return 'Error in get images';
+         if (typeof image === 'string') {
+            resultData.unshift(image);
+         }
+         if (typeof image === 'object') {
+            let newSocialMedia: interfaces.IGetSocialMedia = {
+               _id: i._id,
+               priority: i.priority,
+               url: i.url,
+               fullName: i.fullName,
+               images: {
+                  _id: image._id,
+                  localUrl: image.localUrl,
+                  modelId: image.modelId,
+                  remoteId: image.remoteId,
+                  remoteUrl: image.remoteUrl
+               }
+            };
+            resultData.unshift(newSocialMedia);
+         }
+      }
+      return resultData;
    } catch (e) {
       console.error(e.message);
    }
