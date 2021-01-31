@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ISocialMedia } from '../../interfaces/personal';
+import { ISocialMedia } from '../../interfaces/socialMedia';
 
 const socialMediaSchema = new Schema(
    {
