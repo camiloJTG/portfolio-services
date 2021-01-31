@@ -1,4 +1,4 @@
-import * as service from '../../services/media/images';
+import * as service from '../../services/medias/images';
 import { Request, Response, NextFunction, Router } from 'express';
 import { response2xx, response4xx } from '../../utils/responses';
 import { checkAuth } from '../middlewares/handlerAuth';
@@ -22,17 +22,6 @@ router.post(
         }
     }
 );
-
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const { ids } = req.body;
-        const result = await service.getImages(ids);
-        if (typeof result === 'undefined') return next(result);
-        typeof result === 'string' ? response4xx(res, result, 400) : response2xx(res, result, 200);
-    } catch (e) {
-        next(e);
-    }
-});
 
 router.put('/:id', multer.single('images'), async (req: Request, res: Response, next: NextFunction) => {
     try {
