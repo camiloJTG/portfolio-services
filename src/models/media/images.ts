@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IMediaExtends } from "../../interfaces/media";
+import { IImage } from "../../interfaces/images";
 
 const imageSchema: Schema = new Schema(
     {
@@ -11,4 +11,4 @@ const imageSchema: Schema = new Schema(
     { collection: 'images', timestamps: true }
 );
 
-export default model<IMediaExtends>('images', imageSchema);
+export default model<IImage>('images', imageSchema);
