@@ -1,38 +1,15 @@
-import { Types, Document } from 'mongoose';
-
-export interface IAccount extends Document {
-   mail: string;
-   password: string;
-   username: string;
-}
-
-export interface ISocialMedia extends Document {
-   fullName: string;
-   abbreviation: string;
-   url: string;
-   accountId: Types.ObjectId;
-}
-
-export interface IGetAccount {
-   _id: string;
-   mail: string;
-   password: string;
-   username: string;
-}
-
-export interface IGetSocialMedia {
-   _id: string;
-   fullName: string;
-   abbreviation: string;
-   url: string;
-}
-
-export interface IPersonal {
-   account: IAccount;
-   socialMedia: ISocialMedia[];
-}
-
-export interface IGetPersonal {
-   account: IGetAccount;
-   socialMedia?: IGetSocialMedia[];
+import { ICreateAccount } from "./accounts";
+import { ICreateSocialMedia } from "./socialMedia";
+export interface ICreatePersonal {
+    _id: ICreateAccount["_id"];
+    mail: ICreateAccount["mail"];
+    password: ICreateAccount["password"];
+    username: ICreateAccount["username"];
+    socialMedia: [{
+        _id: ICreateSocialMedia["_id"];
+        fullName: ICreateSocialMedia["fullName"];
+        priority: ICreateSocialMedia["priority"];
+        url: ICreateSocialMedia["url"];
+        accountId: ICreateSocialMedia["accountId"];
+    }];
 }
