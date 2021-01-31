@@ -15,31 +15,14 @@ const socialMedia = joi.array();
 export const mongoIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 
 export const createPersonalSchema = {
-   account: {
-      mail: mailSchema.required(),
-      password: passwordSchema.required(),
-      username: usernameSchema.required(),
-   },
+   mail: mailSchema.required(),
+   password: passwordSchema.required(),
+   username: usernameSchema.required(),
    socialMedia: socialMedia.items(
       joi.object({
          fullName: fullNameSchema.required(),
          priority: prioritySchema.required(),
          url: urlSchema.required(),
-      })
-   ),
-};
-
-export const updatePersonalSchema = {
-   account: {
-      mail: mailSchema,
-      password: passwordSchema,
-      username: usernameSchema,
-   },
-   socialMedia: socialMedia.items(
-      joi.object({
-         fullName: fullNameSchema,
-         priority: prioritySchema,
-         url: urlSchema,
       })
    ),
 };
