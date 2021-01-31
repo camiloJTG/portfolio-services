@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 routes(app);
 
 app.use(error.logError);
-app.use(error.logError);
+app.use(error.handlerError);
 
 app.use(express.static(join(__dirname, 'public')));
 
