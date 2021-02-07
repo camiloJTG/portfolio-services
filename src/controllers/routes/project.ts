@@ -47,7 +47,7 @@ router.get(
             if (typeof result === 'undefined') return next(result);
             typeof result === 'string'
                 ? response4xx(res, result, 400)
-                : response2xx(res, result, 201);
+                : response2xx(res, result, 200);
         } catch (e) {
             next(e);
         }
@@ -62,7 +62,7 @@ router.get(
             if (typeof result === 'undefined') return next(result);
             typeof result === 'string'
                 ? response4xx(res, result, 400)
-                : response2xx(res, result, 201);
+                : response2xx(res, result, 200);
         } catch (e) {
             next(e);
         }
@@ -78,7 +78,7 @@ router.get(
             if (typeof result === 'undefined') return next(result);
             typeof result === 'string'
                 ? response4xx(res, result, 400)
-                : response2xx(res, result, 201);
+                : response2xx(res, result, 200);
         } catch (e) {
             next(e);
         }
@@ -93,7 +93,7 @@ router.get(
             if (typeof result === 'undefined') return next(result);
             typeof result === 'string'
                 ? response4xx(res, result, 400)
-                : response2xx(res, result, 201);
+                : response2xx(res, result, 200);
         } catch (e) {
             next(e);
         }
@@ -109,7 +109,7 @@ router.get(
             if (typeof result === 'undefined') return next(result);
             typeof result === 'string'
                 ? response4xx(res, result, 400)
-                : response2xx(res, result, 201);
+                : response2xx(res, result, 200);
         } catch (e) {
             next(e);
         }
