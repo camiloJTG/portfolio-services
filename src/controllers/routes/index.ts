@@ -3,9 +3,8 @@ import swagger from '../../utils/swagger';
 import personal from './personal';
 import access from './access';
 import social from './social';
-//import project from './projects/projects';
-//import application from './projects/applications';
-//import tools from './projects/tools';
+import project from './project';
+import tools from './tools';
 import media from './media';
 import { Application } from 'express';
 
@@ -15,9 +14,8 @@ const routers = (app: Application) => {
    app.use(`${prefix}/media`, media);
    app.use(`${prefix}/personal`, personal);
    app.use(`${prefix}/social`, social);
-   //app.use(`${prefix}/projects`, project);
-   //app.use(`${prefix}/applications`, application);
-   //app.use(`${prefix}/tools`, tools);
+   app.use(`${prefix}/projects`, project);
+   app.use(`${prefix}/tools`, tools);
    app.use(`${prefix}/docs/`, swaggerUI.serve, swaggerUI.setup(swagger));
 };
 
