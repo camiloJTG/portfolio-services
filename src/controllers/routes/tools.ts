@@ -3,11 +3,13 @@ import * as schema from '../schemas/tools';
 import { Request, Response, NextFunction, Router } from 'express';
 import { response2xx, response4xx } from '../../utils/responses';
 import { handlerValidation } from '../middlewares/handlerValidation';
+import { checkAuth } from '../middlewares/handlerAuth';
 
 const router = Router();
 
 router.post(
    '/',
+   checkAuth,
    handlerValidation(schema.createToolSchema, 'body'),
    async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -24,6 +26,7 @@ router.post(
 
 router.put(
    '/:toolId',
+   checkAuth,
    handlerValidation({ toolId: schema.mongoIdSchema }, 'params'),
    handlerValidation(schema.updateToolSchema, 'body'),
    async (req: Request, res: Response, next: NextFunction) => {

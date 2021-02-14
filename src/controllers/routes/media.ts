@@ -31,6 +31,7 @@ router.post(
 
 router.put(
    '/:id',
+   checkAuth,
    multer.single('images'),
    async (req: Request, res: Response, next: NextFunction) => {
       try {

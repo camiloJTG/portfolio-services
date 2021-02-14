@@ -9,7 +9,6 @@ const router = Router();
 
 router.post(
    '/',
-   checkAuth,
    handlerValidation(schema.createPersonalSchema, 'body'),
    async (req: Request, res: Response, next: NextFunction) => {
       try {
