@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "63c89dfe-f8af-4778-8a04-211a51993f70",
+		"name": "Tools",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create tools",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Angular\",\r\n    \"priority\": 1\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/tools",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"tools"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Update tools",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"React\",\r\n    \"priority\": 1\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/tools/:toolId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"tools",
+						":toolId"
+					],
+					"variable": [
+						{
+							"key": "toolId",
+							"value": "6016d9491dc6d4451c59a39d",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tools",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/tools",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"tools"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get one tool",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/tools/oneTool/:toolId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"tools",
+						"oneTool",
+						":toolId"
+					],
+					"variable": [
+						{
+							"key": "toolId",
+							"value": "6016d9855ba377178038cb04",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		}
+	]
+}

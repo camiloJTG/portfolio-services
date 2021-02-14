@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "a466c4d0-b361-40dd-aae4-13ba53cb2df9",
+		"name": "Projects",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"CONSORCIO\",\r\n    \"description\": \"TEST\",\r\n    \"priority\": 1,\r\n    \"publication\": \"2020/03/12\",\r\n    \"accountId\": \"601623f4edde951a68cbb086\",\r\n    \"applications\": [\r\n        {\r\n            \"name\": \"ESCRITORIO\",\r\n            \"abbreviation\": \"ESC\",\r\n            \"urlApp\": \"https://www.google.com\",\r\n            \"description\": \"TEST\"\r\n        },\r\n                {\r\n            \"name\": \"WEB SERVICES\",\r\n            \"abbreviation\": \"ESC1\",\r\n            \"urlApp\": \"https://www.google1.com\",\r\n            \"description\": \"TEST1\"\r\n        }\r\n    ],\r\n    \"projectTool\": {\r\n        \"toolsId\": [\"6016d9855ba377178038cb04\",\"6016d9491dc6d4451c59a39d\",\"6016d7ab7a3597321c4cad4d\"]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/projects",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Update project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"TEST\",\r\n    \"description\": \"TEST\",\r\n    \"priority\": 1,\r\n    \"publication\": \"2020/03/12\",\r\n    \"accountId\": \"601623f4edde951a68cbb086\",\r\n    \"applications\": [\r\n        {\r\n            \"name\": \"escritorio\",\r\n            \"abbreviation\": \"ESC\",\r\n            \"urlApp\": \"https://www.google.com\",\r\n            \"description\": \"TEST\"\r\n        },\r\n                {\r\n            \"name\": \"escritorio1\",\r\n            \"abbreviation\": \"ESC1\",\r\n            \"urlApp\": \"https://www.google1.com\",\r\n            \"description\": \"TEST1\"\r\n        }\r\n    ],\r\n    \"projectTool\": {\r\n        \"toolsId\": [\"12\",\"34\",\"232\"]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/projects/:projectId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects",
+						":projectId"
+					],
+					"variable": [
+						{
+							"key": "projectId",
+							"value": "601f1349e437fe42dc7fff2f",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get last project registered",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/projects/getLastProject",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects",
+						"getLastProject"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get last six project",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/projects/getSixProject",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects",
+						"getSixProject"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get one project",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/projects/getByProjectId/:projectId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects",
+						"getByProjectId",
+						":projectId"
+					],
+					"variable": [
+						{
+							"key": "projectId",
+							"value": "601f356ae9584f2ef40f186b",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get by tool id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/projects/getByToolId/:toolId?limit=3&page=1",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects",
+						"getByToolId",
+						":toolId"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					],
+					"variable": [
+						{
+							"key": "toolId",
+							"value": "6016d9855ba377178038cb04",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all project",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/projects/?page=1&limit=6",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"projects",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "6"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		}
+	]
+}

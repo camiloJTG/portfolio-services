@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "e1f74c71-f05f-4714-b6d3-4df13037e277",
+		"name": "Personal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create personal",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mail\": \"camilojtg111231112222243423211211.dev@protonmail.com\",\r\n    \"password\": \"123\",\r\n    \"username\": \"camiloJT12221232124313221121G111\",\r\n    \"socialMedia\": [\r\n        {\r\n            \"fullName\": \"Facebook\",\r\n            \"priority\": 1,\r\n            \"url\": \"https://www.bfaggceb2o1ok1.com\"\r\n        },\r\n        {\r\n            \"fullName\": \"Faceb12ook1\",\r\n            \"priority\": 1,\r\n            \"url\": \"https://www.f1bbggg2ace2book12.com\"\r\n        },\r\n        {\r\n            \"fullName\": \"Faceb12ook1\",\r\n            \"priority\": 1,\r\n            \"url\": \"https://www.fggbbbgg231ace2book12.com\"\r\n        },\r\n        {\r\n            \"fullName\": \"Faceb12ook1\",\r\n            \"priority\": 1,\r\n            \"url\": \"https://www.fa32bbbbggggggce2book12.com\"\r\n        },\r\n        {\r\n            \"fullName\": \"Faceb12ook1\",\r\n            \"priority\": 1,\r\n            \"url\": \"https://www.fac432bbbbbgggggge2book12.com\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/personal",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"personal"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get one personal",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{host_base}}/personal/:accountId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"personal",
+						":accountId"
+					],
+					"variable": [
+						{
+							"key": "accountId",
+							"value": "601623f4edde951a68cbb086",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Get a personal data with account id"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.sendRequest({",
+					"    url: pm.environment.get('token_url'),",
+					"    method: 'POST',",
+					"    header: {",
+					"        'Content-Type': 'application/json'",
+					"    },",
+					"    body: {",
+					"        \"mode\": 'raw',",
+					"        \"raw\": JSON.stringify({",
+					"            \"mail\": pm.environment.get('auth_mail'),",
+					"            \"password\": pm.environment.get('auth_password')",
+					"        })",
+					"    }",
+					"}, function (err, res) {",
+					"    if (err) {",
+					"        console.log(err)",
+					"    }",
+					"    console.log(res.json().message.token)",
+					"    pm.environment.set('auth_token', res.json().message.token)",
+					"})"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

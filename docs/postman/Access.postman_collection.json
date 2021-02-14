@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "9cdb412a-4b6e-4b89-8e32-4be010440bed",
+		"name": "Access",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mail\": \"camilojtg.dev@protonmail.com\",\r\n    \"password\": \"123\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/access",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"access"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

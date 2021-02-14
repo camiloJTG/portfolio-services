@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "c0e276f2-0196-4b77-888f-969cd50caa5a",
+		"name": "Social",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get last three social media",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{host_base}}/social/lastThree/:accountId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"social",
+						"lastThree",
+						":accountId"
+					],
+					"variable": [
+						{
+							"key": "accountId",
+							"value": "601623f4edde951a68cbb086",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Get a personal data with account id"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all social media",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{host_base}}/social/:accountId",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"social",
+						":accountId"
+					],
+					"variable": [
+						{
+							"key": "accountId",
+							"value": "601623f4edde951a68cbb086",
+							"type": "string"
+						}
+					]
+				},
+				"description": "Get a personal data with account id"
+			},
+			"response": []
+		}
+	]
+}
