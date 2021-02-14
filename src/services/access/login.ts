@@ -6,9 +6,7 @@ import { createToken } from '../../utils/jwt';
 export const login = async (login: ILogin) => {
    try {
       // Validate if mail is correct
-      const findMail = await accountModel
-         .findOne({ mail: login.mail })
-         .lean();
+      const findMail = await accountModel.findOne({ mail: login.mail }).lean();
       if (!findMail) return `Invalid credentials`;
 
       // Validate if password is correct

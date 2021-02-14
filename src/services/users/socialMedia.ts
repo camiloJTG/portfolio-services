@@ -2,7 +2,9 @@ import * as media from '../medias/images';
 import * as interfaces from '../../interfaces/socialMedia';
 import socialMediaModel from '../../models/personal/socialMedia';
 
-export const createSocialMedia = async (socialMedia: interfaces.ICreateSocialMedia) => {
+export const createSocialMedia = async (
+   socialMedia: interfaces.ICreateSocialMedia
+) => {
    try {
       const urlExists = await socialMediaModel.find({ url: socialMedia.url });
       if (urlExists.length !== 0) {
@@ -41,14 +43,13 @@ export const getByAccountId = async (accountId: string) => {
                   localUrl: image.localUrl,
                   modelId: image.modelId,
                   remoteId: image.remoteId,
-                  remoteUrl: image.remoteUrl
-               }
+                  remoteUrl: image.remoteUrl,
+               },
             };
             resultData.unshift(newSocialMedia);
          }
       }
       return resultData;
-
    } catch (e) {
       console.error(e.message);
    }
@@ -77,8 +78,8 @@ export const getLastThreeSocialRegistered = async (accountId: string) => {
                   localUrl: image.localUrl,
                   modelId: image.modelId,
                   remoteId: image.remoteId,
-                  remoteUrl: image.remoteUrl
-               }
+                  remoteUrl: image.remoteUrl,
+               },
             };
             resultData.unshift(newSocialMedia);
          }
@@ -111,8 +112,8 @@ export const getAllSocialMedia = async (accountId: string) => {
                   localUrl: image.localUrl,
                   modelId: image.modelId,
                   remoteId: image.remoteId,
-                  remoteUrl: image.remoteUrl
-               }
+                  remoteUrl: image.remoteUrl,
+               },
             };
             resultData.unshift(newSocialMedia);
          }

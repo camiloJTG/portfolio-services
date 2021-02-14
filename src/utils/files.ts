@@ -1,15 +1,15 @@
-import { unlink } from "fs-extra";
+import { unlink } from 'fs-extra';
 
 export const deleteLocalFile = async (filename: string[] | string) => {
-    try {
-        if (typeof filename === 'string') {
-            await unlink(filename);
-        } else {
-            for (const file of filename) {
-                await unlink(file);
-            }
-        }
-    } catch (e) {
-        console.error(e.message);
-    }
+   try {
+      if (typeof filename === 'string') {
+         await unlink(filename);
+      } else {
+         for (const file of filename) {
+            await unlink(file);
+         }
+      }
+   } catch (e) {
+      console.error(e.message);
+   }
 };

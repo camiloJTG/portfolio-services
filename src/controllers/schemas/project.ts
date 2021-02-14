@@ -14,35 +14,35 @@ const applicationsSchema = joi.array();
 export const mongoIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 
 export const createProjectSchema = {
-    title: titleSchema.required(),
-    description: descriptionSchema.required(),
-    priority: prioritySchema.required(),
-    publication: publicationSchema.required(),
-    accountId: mongoIdSchema.required(),
-    applications: applicationsSchema.items(
-        joi.object({
-            name: nameSchema.required(),
-            abbreviation: abbreviationSchema.required(),
-            urlApp: urlAppSchema.required(),
-            description: descriptionSchema.required()
-        })
-    ),
-    projectTool: projectToolSchema
+   title: titleSchema.required(),
+   description: descriptionSchema.required(),
+   priority: prioritySchema.required(),
+   publication: publicationSchema.required(),
+   accountId: mongoIdSchema.required(),
+   applications: applicationsSchema.items(
+      joi.object({
+         name: nameSchema.required(),
+         abbreviation: abbreviationSchema.required(),
+         urlApp: urlAppSchema.required(),
+         description: descriptionSchema.required(),
+      })
+   ),
+   projectTool: projectToolSchema,
 };
 
 export const updateProjectSchema = {
-    title: titleSchema,
-    description: descriptionSchema,
-    priority: prioritySchema,
-    publication: publicationSchema,
-    accountId: mongoIdSchema,
-    applications: applicationsSchema.items(
-        joi.object({
-            name: nameSchema,
-            abbreviation: abbreviationSchema,
-            urlApp: urlAppSchema,
-            description: descriptionSchema
-        })
-    ),
-    projectTool: projectToolSchema
+   title: titleSchema,
+   description: descriptionSchema,
+   priority: prioritySchema,
+   publication: publicationSchema,
+   accountId: mongoIdSchema,
+   applications: applicationsSchema.items(
+      joi.object({
+         name: nameSchema,
+         abbreviation: abbreviationSchema,
+         urlApp: urlAppSchema,
+         description: descriptionSchema,
+      })
+   ),
+   projectTool: projectToolSchema,
 };

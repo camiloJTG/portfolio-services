@@ -15,12 +15,12 @@ export default {
    swagger: {
       pathFiles: process.env.PATH_FILES || '',
       serverDev: process.env.SERVER_DEV || '',
-      serverProd: process.env.SERVER_PROD || ''
+      serverProd: process.env.SERVER_PROD || '',
    },
    cloudinary: {
       apiKey: process.env.API_KEY || '',
       apiSecret: process.env.API_SECRET || '',
       apiName: process.env.API_NAME || '',
-      apiSecure: process.env.API_SECURE || ''
-   }
+      apiSecure: process.env.API_SECURE || '',
+   },
 };

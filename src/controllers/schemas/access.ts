@@ -8,6 +8,6 @@ const passwordSchema = joi.string().max(500).min(1).trim();
 export const mongoIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 
 export const loginSchema = {
-    mail: mailSchema.required(),
-    password: passwordSchema.required()
+   mail: mailSchema.required(),
+   password: passwordSchema.required(),
 };

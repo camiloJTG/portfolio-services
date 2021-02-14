@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IApplication } from "../../interfaces/application";
+import { IApplication } from '../../interfaces/application';
 
 const applicationSchema: Schema = new Schema(
    {
@@ -7,7 +7,11 @@ const applicationSchema: Schema = new Schema(
       abbreviation: { type: String, required: true, trim: true },
       urlApp: { type: String, required: true, trim: true },
       description: { type: String, required: true },
-      projectId: { type: Schema.Types.ObjectId, ref: 'projects', required: true },
+      projectId: {
+         type: Schema.Types.ObjectId,
+         ref: 'projects',
+         required: true,
+      },
    },
    {
       collection: 'applications',

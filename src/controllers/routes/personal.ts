@@ -14,8 +14,7 @@ router.post(
    async (req: Request, res: Response, next: NextFunction) => {
       try {
          const result = await service.createPersonal(req.body);
-         if (typeof result === 'undefined')
-            return next(result);
+         if (typeof result === 'undefined') return next(result);
          typeof result === 'string'
             ? response4xx(res, result, 400)
             : response2xx(res, result, 201);

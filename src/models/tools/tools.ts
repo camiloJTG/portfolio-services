@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ITools } from "../../interfaces/tools";
+import { ITools } from '../../interfaces/tools';
 
 const toolsSchema: Schema = new Schema(
    {
@@ -14,7 +14,7 @@ const toolsSchema: Schema = new Schema(
 
 toolsSchema.index({
    name: 1,
-   priority: 1
+   priority: 1,
 });
 
 export default model<ITools>('tools', toolsSchema);
