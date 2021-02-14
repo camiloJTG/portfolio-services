@@ -13,7 +13,7 @@ const options: Options = {
          description:
             'Documentación de servicios asociados al proyecto "Portafolio"',
       },
-      servers: [{ url: config.swagger.serverDev }],
+      servers: [{ url: config.swagger.serverDev }, { url: config.swagger.serverProd }],
    },
    apis: [pathApis],
 };

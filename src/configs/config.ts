@@ -15,6 +15,7 @@ export default {
    swagger: {
       pathFiles: process.env.PATH_FILES || '',
       serverDev: process.env.SERVER_DEV || '',
+      serverProd: process.env.SERVER_PROD || ''
    },
    cloudinary: {
       apiKey: process.env.API_KEY || '',
