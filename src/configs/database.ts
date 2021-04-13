@@ -13,7 +13,7 @@ const DATABASE = config.db.database;
          useNewUrlParser: true,
          useUnifiedTopology: true,
          useCreateIndex: true,
-         useFindAndModify: false,
+         useFindAndModify: false
       });
       console.log('Database is connected');
    } catch (e) {

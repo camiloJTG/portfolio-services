@@ -1,49 +1,102 @@
-import { Document, Types } from 'mongoose';
-import * as IApplication from './application';
-import * as IProjectTool from './projectTools';
-import * as IMedias from './images';
+import { Document } from 'mongoose';
 
-export interface IProjects extends Document {
+export interface IProject extends Document {
    title: string;
+   subtitle: string;
+   registrationDate: Date;
    description: string;
-   priority: number;
-   publication: Date;
-   accountId: Types.ObjectId;
+   image: {
+      remoteUrl: string;
+      remoteId: string;
+      localUrl: string;
+   };
+   developments: [
+      {
+         name: string;
+         urlRepository: string;
+      }
+   ];
+   tools: [
+      {
+         name: string;
+         websiteLink: string;
+         priority: number;
+         logo: {
+            remoteUrl: string;
+            remoteId: string;
+            localUrl: string;
+         };
+      }
+   ];
 }
 
 export interface ICreateProject {
    title: string;
+   subtitle: string;
+   registrationDate: Date;
    description: string;
-   priority: number;
-   publication: Date;
-   accountId: Types.ObjectId;
-   applications: [IApplication.ICreateApplication];
-   projectTool: IProjectTool.ICreateProjectTool;
+   image: {
+      remoteUrl: string;
+      remoteId: string;
+      localUrl: string;
+   };
+   developments: [
+      {
+         name: string;
+         urlRepository: string;
+      }
+   ];
+   tools: [
+      {
+         name: string;
+         websiteLink: string;
+         priority: number;
+         logo: {
+            remoteUrl: string;
+            remoteId: string;
+            localUrl: string;
+         };
+      }
+   ];
 }
 
-export interface IUpateProject {
+export interface IUpdateProject {
    title: string;
+   subtitle: string;
+   registrationDate: Date;
    description: string;
-   priority: number;
-   publication: Date;
-   applications: [IApplication.IUpateApplication];
-   projectTool: IProjectTool.IUpateProjectTool;
+   image: {
+      remoteUrl: string;
+      remoteId: string;
+      localUrl: string;
+   };
+   developments: [
+      {
+         name: string;
+         urlRepository: string;
+      }
+   ];
+   tools: [
+      {
+         name: string;
+         websiteLink: string;
+         priority: number;
+         logo: {
+            remoteUrl: string;
+            remoteId: string;
+            localUrl: string;
+         };
+      }
+   ];
 }
 
-export interface IGetOneProject {
-   _id: string;
-   title: string;
-   description: string;
+export interface ITools {
+   name: string;
+   websiteLink: string;
    priority: number;
-   publication: Date;
-   image: any;
-   accountId: Types.ObjectId;
-   applications: any;
-   projectTool: any;
-}
-
-export interface IGetPorjectByTool {
-   projects: any;
-   images: any;
-   applications: any;
+   logo: {
+      remoteUrl: string;
+      remoteId: string;
+      localUrl: string;
+   };
 }

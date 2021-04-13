@@ -10,15 +10,11 @@ const options: Options = {
       info: {
          title: 'Portafolio',
          version: '1.0.0',
-         description:
-            'Documentación de servicios asociados al proyecto "Portafolio"',
+         description: 'Documentación de servicios asociados al proyecto "Portafolio de proyectos"'
       },
-      servers: [
-         { url: config.swagger.serverDev },
-         { url: config.swagger.serverProd },
-      ],
+      servers: [{ url: config.swagger.serverDev }, { url: config.swagger.serverProd }]
    },
-   apis: [pathApis],
+   apis: [pathApis]
 };
 
 export default swaggerDoc(options);

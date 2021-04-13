@@ -1,6 +1,5 @@
 import app from './server';
 import config from './config';
-
 import './database';
 
 const main = () => {
