@@ -30,7 +30,9 @@ export const getAccount = async () => {
    try {
       const findAccount = await accountModel.find();
       if (findAccount.length === 0) return `No data found`;
-      return findAccount;
+      const { username, aboutMe, jobTitle } = findAccount[0];
+      const newData = { username, aboutMe, jobTitle };
+      return newData;
    } catch (e) {
       console.error(e.message);
    }
