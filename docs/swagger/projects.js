@@ -1,12 +1,10 @@
 /**
  * @swagger
- * /projects/:
+ * /project/listall/:
  *  post:
- *      security:
- *          - bearerAuth: []
  *      tags:
  *          - Módulo de proyectos
- *      description: Registrar un nuevo proyecto
+ *      description: Conseguir todos los proyectos
  *      requestBody:
  *          required: true
  *          content:
@@ -14,95 +12,13 @@
  *                  schema:
  *                      type: object
  *                      required:
- *                          - title
- *                          - description
- *                          - priority
- *                          - publication
- *                          - accountId
- *                          - applications
- *                          - projectTool
+ *                          - limit
+ *                          - page
  *                      properties:
- *                          title:
- *                              type: string
- *                          description:
- *                              type: string
- *                          priority:
+ *                          limit:
  *                              type: number
- *                          publication:
- *                              type: string
- *                              format: datetime
- *                          accountId:
- *                              type: string
- *                          applications:
- *                              type: array
- *                              items:
- *                                  allOf:
- *                                      - $ref: '#/definitions/applications'
- *                          projectTool:
- *                              type: object
- *                              allOf:
- *                                  - $ref: '#/definitions/projectTools'                
- *      responses:
- *          200:
- *              description: Retorna los datos del proyecto creado
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: false
- *                              status:
- *                                  type: integer
- *                                  example: 200
- *                              body:
- *                                  allOf:
- *                                      - $ref: '#/definitions/createProject'
- *          400:
- *              description: Respuestas asociadas a errores de ingreso de datos
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 400 | 401 | 402 | 403
- *                              body:
- *                                  type: string
- *          500:
- *              description: Respuestas asociadas a errores interno del servicio
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 500 | 501 | 502
- *                              body:
- *                                  type: string
- *  get:
- *      tags:
- *          - Módulo de proyectos
- *      description: Conseguir todos los proyectos
- *      parameters:
- *          - in: query
- *            name: limit
- *            schema:
- *              type: string
- *            required: true
- *            description: Cantidad de datos ha retornar
- *          - in: query
- *            name: page
- *            schema:
- *              type: string
- *            required: true
- *            description: Página que se desea buscar
+ *                          page:
+ *                              type: number
  *      responses:
  *          200:
  *              description: Retorna el listado de proyectos
@@ -147,11 +63,67 @@
  *                                  example: 500 | 501 | 502
  *                              body:
  *                                  type: string
- * /projects/getLastProject/:
+ * /project/tools/:
  *  get:
  *      tags:
  *          - Módulo de proyectos
- *      description: Conseguir el último proyecto registrado
+ *      description: Conseguir todas las herramientas
+ *      responses:
+ *          200:
+ *              description: Retorna el listado de proyectos
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          properties:
+ *                              error:
+ *                                  types: boolean
+ *                                  example: false
+ *                              status:
+ *                                  type: integer
+ *                                  example: 200
+ *                              body:
+ *                                  allOf:
+ *                                      - $ref: '#/definitions/getProjects'
+ *          400:
+ *              description: Respuestas asociadas a errores de ingreso de datos
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          properties:
+ *                              error:
+ *                                  types: boolean
+ *                                  example: True
+ *                              status:
+ *                                  type: integer
+ *                                  example: 400 | 401 | 402 | 403
+ *                              body:
+ *                                  type: string
+ *          500:
+ *              description: Respuestas asociadas a errores interno del servicio
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          properties:
+ *                              error:
+ *                                  types: boolean
+ *                                  example: True
+ *                              status:
+ *                                  type: integer
+ *                                  example: 500 | 501 | 502
+ *                              body:
+ *                                  type: string
+ * /project/filter/{name}:
+ *  get:
+ *      tags:
+ *          - Módulo de proyectos
+ *      description: Conseguir proyectos por herramienta
+ *      parameters:
+ *          - in: path
+ *            name: name
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: Nombre de la herramienta
  *      responses:
  *          200:
  *              description: Retorna el último proyecto registrado
@@ -196,63 +168,15 @@
  *                                  example: 500 | 501 | 502
  *                              body:
  *                                  type: string
- * /projects/getSixProject/:
- *  get:
- *      tags:
- *          - Módulo de proyectos
- *      description: Conseguir los últimos seis registros de proyectos
- *      responses:
- *          200:
- *              description: Retorna los últimos seis registros de proyectos
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: false
- *                              status:
- *                                  type: integer
- *                                  example: 200
- *                              body:
- *                                  allOf:
- *                                      - $ref: '#/definitions/getProjects'
- *          400:
- *              description: Respuestas asociadas a errores de ingreso de datos
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 400 | 401 | 402 | 403
- *                              body:
- *                                  type: string
- *          500:
- *              description: Respuestas asociadas a errores interno del servicio
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 500 | 501 | 502
- *                              body:
- *                                  type: string
- * /projects/getByProjectId/{projectId}:
+ *
+ * /project/{id}:
  *  get:
  *      tags:
  *          - Módulo de proyectos
  *      description: Conseguir un proyecto en específico
  *      parameters:
  *          - in: path
- *            name: projectId
+ *            name: id
  *            schema:
  *              type: string
  *            required: true
@@ -273,132 +197,6 @@
  *                              body:
  *                                  allOf:
  *                                      - $ref: '#/definitions/getProjects'
- *          400:
- *              description: Respuestas asociadas a errores de ingreso de datos
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 400 | 401 | 402 | 403
- *                              body:
- *                                  type: string
- *          500:
- *              description: Respuestas asociadas a errores interno del servicio
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 500 | 501 | 502
- *                              body:
- *                                  type: string
- * /projects/getByToolId/{toolId}:
- *  get:
- *      tags:
- *          - Módulo de proyectos
- *      description: Conseguir un proyecto en específico
- *      parameters:
- *          - in: path
- *            name: toolId
- *            schema:
- *              type: string
- *            required: true
- *            description: Id de la herramienta para filtrar
- *          - in: query
- *            name: limit
- *            schema:
- *              type: string
- *            required: true
- *            description: Cantidad de datos ha retornar
- *          - in: query
- *            name: page
- *            schema:
- *              type: string
- *            required: true
- *            description: Página que se desea buscar
- *      responses:
- *          200:
- *              description: Retorna el listado de proyectos
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: false
- *                              status:
- *                                  type: integer
- *                                  example: 200
- *                              body:
- *                                  allOf:
- *                                      - $ref: '#/definitions/getProjects'
- *          400:
- *              description: Respuestas asociadas a errores de ingreso de datos
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 400 | 401 | 402 | 403
- *                              body:
- *                                  type: string
- *          500:
- *              description: Respuestas asociadas a errores interno del servicio
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: True
- *                              status:
- *                                  type: integer
- *                                  example: 500 | 501 | 502
- *                              body:
- *                                  type: string
- * /projects/{projectId}:
- *  put:
- *      security:
- *          - bearerAuth: []
- *      tags:
- *          - Módulo de proyectos
- *      description: Actualizar un proyecto en específico
- *      parameters:
- *          - in: path
- *            name: projectId
- *            schema:
- *              type: string
- *            required: true
- *            description: Id del proyecto
- *      responses:
- *          200:
- *              description: Retorna lso datos del proyecto actualizado
- *              content:
- *                  application/json:
- *                      schema:
- *                          properties:
- *                              error:
- *                                  types: boolean
- *                                  example: false
- *                              status:
- *                                  type: integer
- *                                  example: 200
- *                              body:
- *                                  allOf:
- *                                      - $ref: '#/definitions/createProject'
  *          400:
  *              description: Respuestas asociadas a errores de ingreso de datos
  *              content:
@@ -501,5 +299,5 @@
  *              type: array
  *              items:
  *                  type: string
- *  
+ *
  */

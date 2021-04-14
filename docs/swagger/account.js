@@ -1,30 +1,14 @@
 /**
  * @swagger
  *
- * /access/:
- *  post:
- *      security:
- *          - bearerAuth: []
+ * /account:
+ *   get:
  *      tags:
- *          - Módulo de acceso
- *      description: Obtener un token para poder acceder a servicios con autorizador bearerAuth
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
- *                      required:
- *                          - mail
- *                          - password
- *                      properties:
- *                          mail:
- *                              type: string
- *                          password:
- *                              type: string
+ *          - Módulo de cuenta
+ *      description: Obtener datos de la cuenta
  *      responses:
  *          200:
- *              description: Retorna un token que permite acceder a servicios protejidos
+ *              description: Retorna los datos de la cuenta
  *              content:
  *                  application/json:
  *                      schema:
@@ -37,7 +21,7 @@
  *                                  example: 200
  *                              body:
  *                                  allOf:
- *                                      - $ref: '#/definitions/access'
+ *                                      - $ref: '#/definitions/account'
  *          400:
  *              description: Respuestas asociadas a errores de ingreso de datos
  *              content:
@@ -67,23 +51,17 @@
  *                              body:
  *                                  type: string
  * definitions:
- *  access:
+ *  account:
  *      type: object
  *      required:
- *          - token
- *          - type
- *          - expireIn
+ *          - username
+ *          - aboutMe
+ *          - jobTitle
  *      properties:
- *          token:
+ *          username:
  *              type: string
- *          type:
+ *          aboutMe:
  *              type: string
- *          expireIn: 
+ *          jobTitle:
  *              type: string
- * components:
- *  securitySchemes:
- *      bearerAuth:
- *          type: http
- *          scheme: bearer
- *          bearerFormat: jwt
  */

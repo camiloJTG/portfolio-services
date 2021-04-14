@@ -1,12 +1,178 @@
 {
 	"info": {
-		"_postman_id": "63c89dfe-f8af-4778-8a04-211a51993f70",
-		"name": "Tools",
+		"_postman_id": "cb3f10bb-83a0-47de-b405-e9f12f44f5eb",
+		"name": "Public",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Create tools",
+			"name": "Get account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host_base}}/account",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tools",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"limit\": 2,\r\n    \"page\": 2\r\n}"
+				},
+				"url": {
+					"raw": "{{host_base}}/project/tools",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"project",
+						"tools"
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get tools by name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/project/filter/:name",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"project",
+						"filter",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "213"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get project by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host_base}}/project/:id",
+					"host": [
+						"{{host_base}}"
+					],
+					"path": [
+						"project",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "607509dd73910a3e64c3f6b3"
+						}
+					]
+				},
+				"description": "Create a new personal with account and social media data\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all project",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -28,15 +194,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Angular\",\r\n    \"priority\": 1\r\n}"
+					"raw": "{\r\n    \"limit\": 6,\r\n    \"page\": 1\r\n}"
 				},
 				"url": {
-					"raw": "{{host_base}}/tools",
+					"raw": "{{host_base}}/project/listall",
 					"host": [
 						"{{host_base}}"
 					],
 					"path": [
-						"tools"
+						"project",
+						"listall"
 					]
 				},
 				"description": "Create a new personal with account and social media data\r\n"
@@ -44,56 +211,7 @@
 			"response": []
 		},
 		{
-			"name": "Update tools",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"React\",\r\n    \"priority\": 1\r\n}"
-				},
-				"url": {
-					"raw": "{{host_base}}/tools/:toolId",
-					"host": [
-						"{{host_base}}"
-					],
-					"path": [
-						"tools",
-						":toolId"
-					],
-					"variable": [
-						{
-							"key": "toolId",
-							"value": "6016d9491dc6d4451c59a39d",
-							"type": "string"
-						}
-					]
-				},
-				"description": "Create a new personal with account and social media data\r\n"
-			},
-			"response": []
-		},
-		{
-			"name": "Get all tools",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Get all social",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -113,70 +231,16 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{host_base}}/tools",
+					"raw": "{{host_base}}/social",
 					"host": [
 						"{{host_base}}"
 					],
 					"path": [
-						"tools"
+						"social"
 					]
 				},
-				"description": "Create a new personal with account and social media data\r\n"
-			},
-			"response": []
-		},
-		{
-			"name": "Get one tool",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{host_base}}/tools/oneTool/:toolId",
-					"host": [
-						"{{host_base}}"
-					],
-					"path": [
-						"tools",
-						"oneTool",
-						":toolId"
-					],
-					"variable": [
-						{
-							"key": "toolId",
-							"value": "6016d9855ba377178038cb04",
-							"type": "string"
-						}
-					]
-				},
-				"description": "Create a new personal with account and social media data\r\n"
+				"description": "Get a personal data with account id"
 			},
 			"response": []
 		}
