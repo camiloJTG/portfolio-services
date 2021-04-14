@@ -5,7 +5,7 @@ export interface IAccount extends Document {
    password: string;
    username: string;
    aboutMe: string;
-   jobTitlte: string;
+   jobTitle: string;
 }
 
 export interface ICreateAccount {
@@ -13,7 +13,7 @@ export interface ICreateAccount {
    password: string;
    username: string;
    aboutMe: string;
-   jobTitlte: string;
+   jobTitle: string;
 }
 
 export interface IUpdateAccount {
@@ -21,7 +21,7 @@ export interface IUpdateAccount {
    password: string;
    username: string;
    aboutMe: string;
-   jobTitlte: string;
+   jobTitle: string;
 }
 
 export interface ILogin {
