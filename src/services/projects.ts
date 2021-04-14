@@ -47,7 +47,7 @@ export const createProject = async (project: ICreateProject, media: Express.Mult
 
       // Upload files in cloudinary
       for (const [i, m] of media.entries()) {
-         const uploadMedia = await uploadFile(m.path, cloudinary.socialFolder);
+         const uploadMedia = await uploadFile(m.path, cloudinary.projectFolder);
          if (typeof uploadMedia === 'undefined') {
             media.map((x) => deleteLocalFile(x.path));
             return 'Error when uploading the image to the server. Try again';
@@ -142,7 +142,7 @@ export const updateProject = async (
       if (media) {
          // Upload files in cloudinary
          for (const [i, m] of media.entries()) {
-            const uploadMedia = await uploadFile(m.path, cloudinary.socialFolder);
+            const uploadMedia = await uploadFile(m.path, cloudinary.projectFolder);
             if (typeof uploadMedia === 'undefined') {
                if (typeof media !== 'undefined') media.map((x) => deleteLocalFile(x.path));
                return 'Error when uploading the image to the server. Try again';

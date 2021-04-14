@@ -23,6 +23,7 @@ export default {
       apiName: process.env.API_NAME || '',
       apiSecure: process.env.API_SECURE || '',
       mainFolder: process.env.FOLDER_MAIN || '',
-      socialFolder: process.env.FOLDER_SOCIAL || ''
+      socialFolder: process.env.FOLDER_SOCIAL || '',
+      projectFolder: process.env.FOLDER_PROJECT || ''
    }
 };
