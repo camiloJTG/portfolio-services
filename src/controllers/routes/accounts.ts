@@ -22,11 +22,11 @@ router.post(
    }
 );
 
-router.get('/', checkAuth, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
    try {
       const result = await accountService.getAccount();
       if (typeof result === 'undefined') return next(result);
-      typeof result === 'string' ? response4xx(res, result, 400) : response2xx(res, result, 201);
+      typeof result === 'string' ? response4xx(res, result, 400) : response2xx(res, result, 200);
    } catch (e) {
       next(e);
    }

@@ -25,7 +25,7 @@ router.post(
    }
 );
 
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/listall', async (req: Request, res: Response, next: NextFunction) => {
    try {
       const { limit, page } = req.body;
       const result = await projectService.getAllProjects(limit, page);
