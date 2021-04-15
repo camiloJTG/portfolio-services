@@ -216,7 +216,7 @@ export const getAllProjects = async (limit: number = 10, page: number = 1) => {
          totalPages: Math.ceil(count / limit),
          currentPage: page
       };
-      return findData;
+      return newData;
    } catch (e) {
       console.error(e.message);
    }
