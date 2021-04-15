@@ -25,10 +25,13 @@ router.post(
    }
 );
 
-router.post('/listall', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/', async (req: Request, res: Response, next: NextFunction) => {
    try {
-      const { limit, page } = req.body;
-      const result = await projectService.getAllProjects(limit, page);
+      const { limit, page } = req.query;
+      let result: string | undefined | {};
+      if (typeof limit === 'string' && typeof page === 'string') {
+         result = await projectService.getAllProjects(parseInt(limit), parseInt(page));
+      }
       if (typeof result === 'undefined') return next(result);
       typeof result === 'string' ? response4xx(res, result, 400) : response2xx(res, result, 200);
    } catch (e) {
