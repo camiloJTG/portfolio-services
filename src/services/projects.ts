@@ -28,11 +28,6 @@ export const createProject = async (project: ICreateProject, media: Express.Mult
 
       // Business logic for tools
       for (const tool of tools) {
-         const findLink = await projectModel.find({ 'tools.websiteLink': tool.websiteLink }).lean();
-         if (findLink.length !== 0) {
-            media.map((x) => deleteLocalFile(x.path));
-            return `The reposotiry ${tool.websiteLink} has already registered`;
-         }
          const countPriority = await projectModel
             .find({ 'tools.priority': tool.priority })
             .countDocuments()
