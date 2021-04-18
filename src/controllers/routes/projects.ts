@@ -65,7 +65,15 @@ router.get(
 
 router.get('/filter/:name', async (req: Request, res: Response, next: NextFunction) => {
    try {
-      const result = await projectService.getToolByName(req.params.name);
+      const { limit, page } = req.query;
+      let newName = null;
+      if (req.params.name) {
+         newName = req.params.name;
+      }
+      let result: string | undefined | {};
+      if (typeof limit === 'string' && typeof page === 'string') {
+         result = await projectService.getToolByName(parseInt(limit), parseInt(page), newName);
+      }
       if (typeof result === 'undefined') return next(result);
       typeof result === 'string' ? response4xx(res, result, 400) : response2xx(res, result, 200);
    } catch (e) {

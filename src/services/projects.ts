@@ -217,11 +217,35 @@ export const getAllProjects = async (limit: number = 10, page: number = 1) => {
    }
 };
 
-export const getToolByName = async (name: string) => {
+export const getToolByName = async (limit: number = 10, page: number = 1, name: string | null) => {
    try {
-      const findTool = await projectModel.find({ 'tools.name': name }).lean();
-      if (findTool.length === 0) return `No data found`;
-      return findTool;
+      let findData = null;
+      if (!name || name === 'null') {
+         console.log('sin nombre');
+         findData = await projectModel
+            .find()
+            .limit(limit * 1)
+            .skip((page - 1) * limit)
+            .sort({ createdAt: -1 })
+            .lean();
+      } else {
+         console.log('con nombre');
+         findData = await projectModel
+            .find({ 'tools.name': name })
+            .find()
+            .limit(limit * 1)
+            .skip((page - 1) * limit)
+            .sort({ createdAt: -1 })
+            .lean();
+      }
+      if (findData.length === 0) return `No data found`;
+      const count = await projectModel.countDocuments();
+      const newData = {
+         findData,
+         totalPages: Math.ceil(count / limit),
+         currentPage: page
+      };
+      return newData;
    } catch (e) {
       console.log(e.message);
    }
