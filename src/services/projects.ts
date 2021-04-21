@@ -100,18 +100,22 @@ export const updateProject = async (
       const { subtitle, developments, tools } = project;
 
       // Business logic
-      if (subtitle.length > 100) return `The subtitle character limit is 100 characters`;
+      if (subtitle) {
+         if (subtitle.length > 100) return `The subtitle character limit is 100 characters`;
+      }
 
       // Business logic for developments
-      for (const devep of developments) {
-         const findUrl = await projectModel
-            .find({
-               'developments.urlRepository': devep.urlRepository
-            })
-            .lean();
-         if (findUrl.length !== 0) {
-            if (typeof media !== 'undefined') media.map((x) => deleteLocalFile(x.path));
-            return `The url repository ${devep.urlRepository} has already registered`;
+      if (developments) {
+         for (const devep of developments) {
+            const findUrl = await projectModel
+               .find({
+                  'developments.urlRepository': devep.urlRepository
+               })
+               .lean();
+            if (findUrl.length !== 0) {
+               if (typeof media !== 'undefined') media.map((x) => deleteLocalFile(x.path));
+               return `The url repository ${devep.urlRepository} has already registered`;
+            }
          }
       }
 
