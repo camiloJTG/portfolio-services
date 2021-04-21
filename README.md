@@ -36,7 +36,7 @@ The documentation can be found by clicking on the swagger link. In addition, ins
 ## URL api server
 
 ```
- https://portfolio-web-service.herokuapp.com/
+https://jtg-portfolio-web-service.herokuapp.com/api
 ```
 
 ## Tools implements
